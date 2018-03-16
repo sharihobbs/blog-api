@@ -18,19 +18,16 @@ function lorem() {
 
 // sample posts
 BlogPosts.create(
-	'Banana Bread Recipe', lorem(), 'Sally Baker');
+	'Banana Bread', lorem(), 'Sally Baker');
 BlogPosts.create(
-	'Birthday Cupcakes Recipe', lorem(), 'Betty Sue');	
+	'Birthday Cupcakes', lorem(), 'Betty Sue');	
 
 // GET and POST requests should go to /blog-posts
 router.get('/', (req, res) => {
 	res.json(BlogPost.get());
 });
 
-
-// why is this endpoint different??? this is the solution:
-// router.post('/', jsonParser, (req, res) => {
-router.post('/blog-posts', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
 	const requiredFields = ['title', 'content', 'author']; 
 	for (let i=0; i<requiredFields.length; i++) {
 		const field = requiredFields[i];
@@ -46,18 +43,13 @@ router.post('/blog-posts', jsonParser, (req, res) => {
 });
 
 // DELETE and PUT requests should go to /blog-posts/:id
-
-// solution gives a different endpoint, why?
-// router.delete('/:id', (req, res) => {
-router.delete('/blog-posts/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
 	BlogPost.delete(req.params.id);
 	console.log(`Deleted blog post with id \`${req.params.ID}\``); 
 	res.status(204).end(); 
 });
 
-// solution gives a different endpoint, why?
-// router.delete('/:id', (req, res) => {
-router.put('/blog-posts/:id', jsonParser, (req, res) => {
+router.put('/:id', jsonParser, (req, res) => {
 	const requiredFields = [
 		'id', 'title', 'content', 'author', 'publishDate']; 
 	for (let i=0; i<requiredFields.length; i++) {
@@ -77,7 +69,6 @@ router.put('/blog-posts/:id', jsonParser, (req, res) => {
 	}
 	console.log(`Updating blog post with id \`${req.params.id}\``);
 	const updatedItem = BlogPost.update({
-		// why is id params while the others are body?
 		id: req.params.id,
 		title: req.body.title,
 		content: req.body.content,
@@ -88,6 +79,5 @@ router.put('/blog-posts/:id', jsonParser, (req, res) => {
 })
 
 // Use Express router and modularize routes to /blog-posts
-
 module.exports = router; 
 
