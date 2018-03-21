@@ -24,7 +24,7 @@ BlogPosts.create(
 
 // GET and POST requests should go to /blog-posts
 router.get('/', (req, res) => {
-	res.json(BlogPost.get());
+	res.json(BlogPosts.get());
 });
 
 router.post('/', jsonParser, (req, res) => {
@@ -37,14 +37,14 @@ router.post('/', jsonParser, (req, res) => {
 			return res.status(400).send(message);
 		}
 	}
-	const item = BlogPost.create(
+	const item = BlogPosts.create(
 		req.body.title, req.body.content, req.body.author);
 	res.status(201).json(item);
 });
 
 // DELETE and PUT requests should go to /blog-posts/:id
 router.delete('/:id', (req, res) => {
-	BlogPost.delete(req.params.id);
+	BlogPosts.delete(req.params.id);
 	console.log(`Deleted blog post with id \`${req.params.ID}\``); 
 	res.status(204).end(); 
 });
@@ -68,7 +68,7 @@ router.put('/:id', jsonParser, (req, res) => {
 		return res.status(400).send(message);
 	}
 	console.log(`Updating blog post with id \`${req.params.id}\``);
-	const updatedItem = BlogPost.update({
+	const updatedItem = BlogPosts.update({
 		id: req.params.id,
 		title: req.body.title,
 		content: req.body.content,

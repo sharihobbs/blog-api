@@ -19,7 +19,7 @@ describe('Blog Posts', function() {
 
   it('should list items on GET', function() {
     return chai.request(app)
-      .get('/blog-posts')
+      .get('/blogposts')
       .then(function(res) {
         expect(res).to.have.status(200);
         expect(res).to.be.json;
@@ -42,7 +42,7 @@ describe('Blog Posts', function() {
   	const expectedKeys = ['id', 'publishDate'].concat(Object.keys(newPost));
 
     return chai.request(app)
-      .post('/blog-posts')
+      .post('/blogposts')
       .send(newPost)
       .then(function(res) {
         expect(res).to.have.status(201);
@@ -58,7 +58,7 @@ describe('Blog Posts', function() {
   it('should error if POST missing expected values', function() {
   	const badRequestData = {};
   	return chai.request(app)
-  		.post('/blog-posts')
+  		.post('/blogposts')
   		.send(badRequestData)
   		.catch(function(res) {
   			expect(res).to.have.status(400);
@@ -68,14 +68,14 @@ describe('Blog Posts', function() {
   it('should update blog posts on PUT', function() {
 
     return chai.request(app)
-      .get('/blog-posts')
+      .get('/blogposts')
       .then(function(res) {
         const updatedPost = Object.assign(res.body[0], {
         	title: 'My Updated Title', 
         	content: 'Lorem ip none'
         });
         return chai.request(app)
-          .put(`/blog-posts/${res.body[0].id}`)
+          .put(`/blogposts/${res.body[0].id}`)
           .send(updatedPost)
           .then(function(res) {
           	expect(res).to.have.status(204);
@@ -86,10 +86,10 @@ describe('Blog Posts', function() {
 
   it('should delete posts on DELETE', function() {
     return chai.request(app)
-      .get('/blog-posts')
+      .get('/blogposts')
       .then(function(res) {
         return chai.request(app)
-          .delete(`/blog-posts/${res.body[0].id}`);
+          .delete(`/blogposts/${res.body[0].id}`);
       })
       .then(function(res) {
         expect(res).to.have.status(204);
