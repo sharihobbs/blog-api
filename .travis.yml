@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Rt1PXxj3D6F4cQJCrXkqvaWDD03q2UuEbgxApvrkfX6rTfkUa7LCIYhFref9+pxi8uTTtQI+y3qfuBiPANvmKnspMm0cEmIGXUfDgU4YvdalcEi3BcAWucc/kLBJm0BnnoEwPhSLADPunLiK14FQ7wNVdFiYSwexDTSgGZZiSpUlAymAw83C7FxCn77g7XvurO1X2KkUBmJKR4aT+shxdKDUbcPxYUUHuitoYUJ620jpDbm1VmQQsnR8F7CmKTtzUIFJU2I4FQTc8+A3egUbwCWkvE3Yw1r9FGukroO33qFTSQedZpM4eE/JmLS2c5lHS140gmvfPLib6cRHnnsJBq3TXuH/mBQaBDTbGzH3/PWPXGpmPK1wE+uw2Q+SZMDKXUq4ltOwlWWryg3eIzPpCf/A8lqf7x0lALn5ac01xTpZvJQLUdPnkqZXzNvYCTTe3yriI3+axI4zIaV3RJKewu6ODJuLA+xeyOvLm3VM+Z/Relk7VNjiOrEOYVo85n04uP8ssaW7wbR8xiq10IGXto5y1sFv+BduA8ZR1EJlyInjYVyaQu2khAVc4gs+uIag6OVCsgdV5guKftwmEUHQ39XAO+6dxf16duN9f+DllIFsy7NS0n49DbKOyxA67cCRiTziR38s/CPPSbG0qmAMUo2db8gJ6Cb2s075htgC8TA=
+  app: immense-mountain-18148
+  on:
+    repo: sharihobbs/blog-api
